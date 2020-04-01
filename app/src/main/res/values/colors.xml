@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#D4E157</color>
+    <color name="colorPrimaryDark">#000000</color> //the primary dark takes the notch color, maybe because i have dark themed phone
+    <color name="colorSecondary">#000000</color>
+    <color name="colorAccent">#9CCC65</color>
+
+
+
+
+</resources>

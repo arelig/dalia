@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Dalia</string>
+    <string name="prefDataFile">prefData</string>
+    <string name="keyState">state</string>
+    <string name="keyUser">user</string>
+    <string name="hintEmail">E-mail</string>
+    <string name="titleDalia">DALIA</string>
+    <string name="hintPassword">Password</string>
+    <string name="terminos_y_condiciones">Terms and Cond</string>
+    <string name="desarrollo">Development</string>
+    <string name="btnSignUp">Sign up</string>
+    <string name="hintName">Name</string>
+</resources>
