@@ -5,11 +5,10 @@ package com.arelig.dalia.dbmodel
 
     @todo: activity logic only,db contract, db helper
  */
-abstract class Plant(val name: String,
-    val category: Int , val care: Int){
+class Plant(val plantid: String, val name: String, val wateringFreq: Int , val category: Int){
 
-    fun setCalendarReminder(){
-        //type.watering_frecuency
-        //interacts with the data model from calendar
-    }
+//    fun setCalendarReminder(){
+//        //type.watering_frecuency
+//        //interacts with the data model from calendar
+//    }
 }
