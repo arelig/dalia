@@ -10,7 +10,7 @@ object DBContract {
             val TABLE_NAME = "plant-library"
             val COLUMN_PLANT_ID = "id"
             val COLUMN_NAME = "name"
-            val COLUMN_WATERING_FREQ = "wateringfrequency"
+            val COLUMN_WATERING_FREQ = "watering-frequency"
             val COLUMN_CATEGORY = "category"
         }
     }

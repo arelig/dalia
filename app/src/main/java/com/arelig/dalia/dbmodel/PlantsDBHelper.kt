@@ -33,7 +33,7 @@ class UsersDBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,
 
         // Create a new map of values, where column names are the keys
         val values = ContentValues()
-        values.put(DBContract.PlantEntry.COLUMN_PLANT_ID, plant.plantid)
+        values.put(DBContract.PlantEntry.COLUMN_PLANT_ID, plant.plantId)
         values.put(DBContract.PlantEntry.COLUMN_NAME, plant.name)
         values.put(DBContract.PlantEntry.COLUMN_WATERING_FREQ, plant.wateringFreq)
         values.put(DBContract.PlantEntry.COLUMN_CATEGORY, plant.category)
