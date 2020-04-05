@@ -7,10 +7,11 @@ import android.database.sqlite.SQLiteConstraintException
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteException
 import android.database.sqlite.SQLiteOpenHelper
+import com.arelig.dalia.datamodel.Plant
 
 import java.util.ArrayList
 
-class UsersDBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
+class PlantDBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
     override fun onCreate(db: SQLiteDatabase) {
         db.execSQL(SQL_CREATE_ENTRIES)
     }
@@ -33,37 +34,37 @@ class UsersDBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,
 
         // Create a new map of values, where column names are the keys
         val values = ContentValues()
-        values.put(DBContract.PlantEntry.COLUMN_PLANT_ID, plant.plantId)
-        values.put(DBContract.PlantEntry.COLUMN_NAME, plant.name)
-        values.put(DBContract.PlantEntry.COLUMN_WATERING_FREQ, plant.wateringFreq)
-        values.put(DBContract.PlantEntry.COLUMN_CATEGORY, plant.category)
+        values.put(DBContractPlant.UserEntry.COLUMN_ID, plant.plantId)
+        values.put(DBContractPlant.UserEntry.COLUMN_NAME, plant.name)
+        values.put(DBContractPlant.UserEntry.COLUMN_CATEGORY, plant.category)
+        values.put(DBContractPlant.UserEntry.COLUMN_WATERING_FREQ, plant.wateringFreq)
 
         // Insert the new row, returning the primary key value of the new row
-        val newRowId = db.insert(DBContract.PlantEntry.TABLE_NAME, null, values)
+        val newRowId = db.insert(DBContractPlant.UserEntry.TABLE_NAME, null, values)
 
         return true
     }
 
     @Throws(SQLiteConstraintException::class)
-    fun deleteUser(plantid: String): Boolean {
+    fun deletePlant(plantid: String): Boolean {
         // Gets the data repository in write mode
         val db = writableDatabase
         // Define 'where' part of query.
-        val selection = DBContract.PlantEntry.COLUMN_PLANT_ID + " LIKE ?"
+        val selection = DBContractPlant.UserEntry.COLUMN_ID + " LIKE ?"
         // Specify arguments in placeholder order.
         val selectionArgs = arrayOf(plantid)
         // Issue SQL statement.
-        db.delete(DBContract.PlantEntry.TABLE_NAME, selection, selectionArgs)
+        db.delete(DBContractPlant.UserEntry.TABLE_NAME, selection, selectionArgs)
 
         return true
     }
 
-    fun readUser(plantid: String): ArrayList<Plant> {
+    fun readPlant(plantid: String): ArrayList<Plant> {
         val plants = ArrayList<Plant>()
         val db = writableDatabase
         var cursor: Cursor? = null
         try {
-            cursor = db.rawQuery("select * from " + DBContract.PlantEntry.TABLE_NAME + " WHERE " + DBContract.PlantEntry.COLUMN_PLANT_ID + "='" + plantid + "'", null)
+            cursor = db.rawQuery("select * from " + DBContractPlant.UserEntry.TABLE_NAME + " WHERE " + DBContractPlant.UserEntry.COLUMN_ID + "='" + plantid + "'", null)
         } catch (e: SQLiteException) {
             // if table not yet present, create it
             db.execSQL(SQL_CREATE_ENTRIES)
@@ -71,14 +72,21 @@ class UsersDBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,
         }
 
         var name: String
-        var wateringFreq: Int
         var category : Int
+        var wateringFreq: Int
         if (cursor!!.moveToFirst()) {
             while (!cursor.isAfterLast) {
-                name = cursor.getString(cursor.getColumnIndex(DBContract.PlantEntry.COLUMN_NAME))
-                wateringFreq = cursor.getInt(cursor.getColumnIndex(DBContract.PlantEntry.COLUMN_WATERING_FREQ))
-                category = cursor.getInt(cursor.getColumnIndex(DBContract.PlantEntry.COLUMN_CATEGORY))
-                plants.add(Plant(plantid, name, wateringFreq, category))
+                name = cursor.getString(cursor.getColumnIndex(DBContractPlant.UserEntry.COLUMN_NAME))
+                wateringFreq = cursor.getInt(cursor.getColumnIndex(DBContractPlant.UserEntry.COLUMN_WATERING_FREQ))
+                category = cursor.getInt(cursor.getColumnIndex(DBContractPlant.UserEntry.COLUMN_CATEGORY))
+                plants.add(
+                    Plant(
+                        plantid,
+                        name,
+                        category,
+                        wateringFreq
+                    )
+                )
                 cursor.moveToNext()
             }
         }
@@ -90,7 +98,7 @@ class UsersDBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,
         val db = writableDatabase
         var cursor: Cursor? = null
         try {
-            cursor = db.rawQuery("select * from " + DBContract.PlantEntry.TABLE_NAME, null)
+            cursor = db.rawQuery("select * from " + DBContractPlant.UserEntry.TABLE_NAME, null)
         } catch (e: SQLiteException) {
             db.execSQL(SQL_CREATE_ENTRIES)
             return ArrayList()
@@ -98,16 +106,23 @@ class UsersDBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,
 
         var plantid: String
         var name: String
-        var wateringFreq: Int
         var category : Int
+        var wateringFreq: Int
         if (cursor!!.moveToFirst()) {
             while (!cursor.isAfterLast) {
-                plantid = cursor.getString(cursor.getColumnIndex(DBContract.PlantEntry.COLUMN_PLANT_ID))
-                name = cursor.getString(cursor.getColumnIndex(DBContract.PlantEntry.COLUMN_NAME))
-                wateringFreq = cursor.getInt(cursor.getColumnIndex(DBContract.PlantEntry.COLUMN_WATERING_FREQ))
-                category = cursor.getInt(cursor.getColumnIndex(DBContract.PlantEntry.COLUMN_CATEGORY))
+                plantid = cursor.getString(cursor.getColumnIndex(DBContractPlant.UserEntry.COLUMN_ID))
+                name = cursor.getString(cursor.getColumnIndex(DBContractPlant.UserEntry.COLUMN_NAME))
+                category = cursor.getInt(cursor.getColumnIndex(DBContractPlant.UserEntry.COLUMN_CATEGORY))
+                wateringFreq = cursor.getInt(cursor.getColumnIndex(DBContractPlant.UserEntry.COLUMN_WATERING_FREQ))
 
-                plants.add(Plant(plantid, name, wateringFreq, category))
+                plants.add(
+                    Plant(
+                        plantid,
+                        name,
+                        category,
+                        wateringFreq
+                    )
+                )
                 cursor.moveToNext()
             }
         }
@@ -120,12 +135,12 @@ class UsersDBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,
         val DATABASE_NAME = "FeedReader.db"
 
         private val SQL_CREATE_ENTRIES =
-            "CREATE TABLE " + DBContract.PlantEntry.TABLE_NAME + " (" +
-                    DBContract.PlantEntry.COLUMN_PLANT_ID + " TEXT PRIMARY KEY," +
-                    DBContract.PlantEntry.COLUMN_NAME + " TEXT," +
-                    DBContract.PlantEntry.COLUMN_WATERING_FREQ + "TEXT," +
-                    DBContract.PlantEntry.COLUMN_CATEGORY+ " TEXT)"
+            "CREATE TABLE " + DBContractPlant.UserEntry.TABLE_NAME + " (" +
+                    DBContractPlant.UserEntry.COLUMN_ID + " TEXT PRIMARY KEY," +
+                    DBContractPlant.UserEntry.COLUMN_NAME + " TEXT," +
+                    DBContractPlant.UserEntry.COLUMN_CATEGORY + "TEXT," +
+                    DBContractPlant.UserEntry.COLUMN_WATERING_FREQ+ " TEXT)"
 
-        private val SQL_DELETE_ENTRIES = "DROP TABLE IF EXISTS " + DBContract.PlantEntry.TABLE_NAME
+        private val SQL_DELETE_ENTRIES = "DROP TABLE IF EXISTS " + DBContractPlant.UserEntry.TABLE_NAME
     }
 }

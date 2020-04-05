@@ -19,13 +19,13 @@ class AddPlantActivity : AppCompatActivity() {
         startComponents()
     }
 
-    fun startComponents() {
+    private fun startComponents() {
         plantName = findViewById(R.id.editPlantName)
         btnAddPlant = findViewById(R.id.btnAddToHouse)
         startSpinner()
     }
 
-    fun startSpinner() {
+    private fun startSpinner() {
         var categories = resources.getStringArray(R.array.category_name)
         val spnCategory = findViewById<Spinner>(R.id.spnCategory)
         if (spnCategory != null) {

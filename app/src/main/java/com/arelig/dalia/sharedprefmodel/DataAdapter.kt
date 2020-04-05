@@ -1,7 +1,7 @@
-package com.arelig.dalia.code
+package com.arelig.dalia.sharedprefmodel
 
 import android.content.Context
-import com.arelig.dalia.dbmodel.User
+import com.arelig.dalia.datamodel.User
 
 class DataAdapter(context: Context) : DataPreference {
 

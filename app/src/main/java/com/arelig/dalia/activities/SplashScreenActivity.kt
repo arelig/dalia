@@ -4,8 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.arelig.dalia.R
-import com.arelig.dalia.code.DataAdapter
-import com.arelig.dalia.code.DataPreference
+import com.arelig.dalia.sharedprefmodel.DataAdapter
+import com.arelig.dalia.sharedprefmodel.DataPreference
 
 class SplashScreenActivity : AppCompatActivity() {
 

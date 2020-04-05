@@ -1,4 +1,4 @@
-package com.arelig.dalia.code
+package com.arelig.dalia.sharedprefmodel
 
 import android.content.Context
 import android.content.SharedPreferences

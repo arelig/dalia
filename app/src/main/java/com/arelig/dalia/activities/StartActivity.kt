@@ -7,10 +7,10 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.arelig.dalia.R
-import com.arelig.dalia.code.DataAdapter
-import com.arelig.dalia.code.DataPreference
-import com.arelig.dalia.dbmodel.User
-import com.arelig.dalia.code.EmailValidation
+import com.arelig.dalia.sharedprefmodel.DataAdapter
+import com.arelig.dalia.sharedprefmodel.DataPreference
+import com.arelig.dalia.datamodel.User
+import com.arelig.dalia.sharedprefmodel.EmailValidation
 
 class StartActivity : AppCompatActivity() {
 

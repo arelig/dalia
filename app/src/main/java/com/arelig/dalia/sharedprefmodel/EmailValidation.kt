@@ -1,4 +1,4 @@
-package com.arelig.dalia.code
+package com.arelig.dalia.sharedprefmodel
 
 class EmailValidation {
     companion object {

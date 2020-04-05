@@ -1,6 +1,6 @@
-package com.arelig.dalia.code
+package com.arelig.dalia.sharedprefmodel
 
-import com.arelig.dalia.dbmodel.User
+import com.arelig.dalia.datamodel.User
 
 interface DataPreference {
     fun getData() : User

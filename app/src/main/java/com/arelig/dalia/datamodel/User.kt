@@ -1,4 +1,4 @@
-package com.arelig.dalia.dbmodel
+package com.arelig.dalia.datamodel
 
 class User(
     var name : String? = "User",
@@ -6,6 +6,5 @@ class User(
     var password : String? = ""
 )
 
-// @todo: private var garden : Plants[] = null
 
 
