@@ -1,19 +1,23 @@
 <resources>
     <string name="app_name">Dalia</string>
-    <string name="prefDataFile">prefData</string>
-    <string name="keyState">state</string>
-    <string name="keyUser">user</string>
-    <string name="hintEmail">E-mail</string>
-    <string name="titleDalia">DALIA</string>
-    <string name="hintPassword">Password</string>
-    <string name="terminos_y_condiciones">Terms and Cond</string>
-    <string name="desarrollo">Development</string>
-    <string name="btnSignUp">Sign up</string>
-    <string name="hintName">Name</string>
+    <string name="pref_data_file">prefData</string>
+    <string name="key_state">state</string>
+    <string name="key_user">user</string>
+    <string name="hint_email">E-mail</string>
+    <string name="title_dalia">DALIA</string>
+    <string name="hint_password">Password</string>
+    <string name="term_and_cond">Terms and Cond</string>
+    <string name="dev">Development</string>
+    <string name="btn_sign_up">Sign up</string>
+    <string name="hint_name">Name</string>
+    <string name="add_plant_name_error">Required field</string>
+    <string name="btn_add_houseplant">Add a houseplant</string>
+    <string name="add_Plant_Name_Error">You must name your plant</string>
+    <string name="btn_add_to_home">Add to Home</string>
 
     <string-array name="category_name">
-        <item>Flora</item>
-        <item>Follaje</item>
-        <item>Suculenta o Cactus</item>
+        <item>Flowery</item>
+        <item>Foliage</item>
+        <item>Succulent and Cacti</item>
     </string-array>
 </resources>

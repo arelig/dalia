@@ -6,7 +6,7 @@ import com.arelig.dalia.R
 
 
 class SharedData(context : Context) {
-    private val prefDataFile = context.getString(R.string.prefDataFile)
+    private val prefDataFile = context.getString(R.string.pref_data_file)
     private val pref: SharedPreferences? = context.getSharedPreferences(prefDataFile, Context.MODE_PRIVATE)
 
     //@todo: modify the primary state NOT-REGISTERED

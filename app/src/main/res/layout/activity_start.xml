@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center_vertical"
@@ -20,7 +18,7 @@
         android:fontFamily="sans-serif-black"
         android:paddingTop="150dp"
         android:paddingBottom="30dp"
-        android:text="@string/titleDalia"
+        android:text="@string/title_dalia"
         android:textAlignment="center"
         android:textColor="@android:color/secondary_text_light"
         android:textSize="60sp" />
@@ -40,7 +38,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="@string/hintName"
+            android:hint="@string/hint_name"
             android:text=""
             android:inputType="textPersonName" />
 
@@ -49,7 +47,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="@string/hintEmail"
+            android:hint="@string/hint_email"
             android:text=""
             android:inputType="textEmailAddress" />
 
@@ -59,7 +57,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:ems="10"
-            android:hint="@string/hintPassword"
+            android:hint="@string/hint_password"
             android:text=""
             android:inputType="textPassword" />
 
@@ -69,7 +67,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/editPassword"
             android:layout_centerHorizontal="true"
-            android:text="@string/btnSignUp" />
+            android:text="@string/btn_sign_up" />
 
     </LinearLayout>
 
@@ -81,7 +79,7 @@
         android:layout_alignParentEnd="true"
         android:layout_marginTop="280dp"
         android:layout_marginEnd="25dp"
-        android:text="@string/terminos_y_condiciones"
+        android:text="@string/term_and_cond"
         android:textColor="#ffffff"/>
 
     <TextView
@@ -92,7 +90,7 @@
         android:layout_alignParentStart="true"
         android:layout_marginStart="25dp"
         android:layout_marginTop="280dp"
-        android:text="@string/desarrollo"
+        android:text="@string/dev"
         android:textColor="#ffffff"/>
 
 
