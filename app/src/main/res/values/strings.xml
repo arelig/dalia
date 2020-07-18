@@ -3,17 +3,18 @@
     <string name="pref_data_file">prefData</string>
     <string name="key_state">state</string>
     <string name="key_user">user</string>
-    <string name="hint_email">E-mail</string>
+    <string name="hint_email">Enter your E-mail</string>
     <string name="title_dalia">DALIA</string>
-    <string name="hint_password">Password</string>
+    <string name="hint_password">Create a password</string>
     <string name="term_and_cond">Terms and Cond</string>
     <string name="dev">Development</string>
     <string name="btn_sign_up">Sign up</string>
-    <string name="hint_name">Name</string>
+    <string name="hint_name">What\'s your name?</string>
     <string name="add_plant_name_error">Required field</string>
-    <string name="btn_add_houseplant">Add a houseplant</string>
+    <string name="btn_add_houseplant">Add a plant</string>
     <string name="add_Plant_Name_Error">You must name your plant</string>
     <string name="btn_add_to_home">Add to Home</string>
+    <string name="splash_intro">Being a plant parent doesn\'t have to be so hard</string>
 
     <string-array name="category_name">
         <item>Flowery</item>

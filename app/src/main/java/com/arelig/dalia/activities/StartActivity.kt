@@ -7,9 +7,9 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.arelig.dalia.R
+import com.arelig.dalia.datamodel.User
 import com.arelig.dalia.sharedprefmodel.DataAdapter
 import com.arelig.dalia.sharedprefmodel.DataPreference
-import com.arelig.dalia.datamodel.User
 import com.arelig.dalia.sharedprefmodel.EmailValidation
 
 class StartActivity : AppCompatActivity() {
@@ -24,7 +24,8 @@ class StartActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_start)
-        supportActionBar?.hide()
+        // supportActionBar?.hide()
+        supportActionBar?.displayOptions
     }
 
     override fun onStart() {
@@ -73,7 +74,7 @@ class StartActivity : AppCompatActivity() {
     private fun checkName(): Boolean {
         val value = userName?.text.toString().isNotEmpty()
         if (value.not()) {
-            userName?.error = "Who's the plant master?"
+            userName?.error = "Less is more, but we need more your name before we can proceed."
             return value
         }
         return value
@@ -85,7 +86,7 @@ class StartActivity : AppCompatActivity() {
     private fun checkEmail(): Boolean {
         val value = EmailValidation.isEmailValid(userEmail?.text.toString())
         if (value.not()) {
-            userEmail?.error = "Is it a valid email?"
+            userEmail?.error = "Your best AND valid e-mail."
             return value
         }
         return value

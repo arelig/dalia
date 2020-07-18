@@ -5,20 +5,14 @@ import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.arelig.dalia.R
-import com.arelig.dalia.datamodel.Plant
-import com.arelig.dalia.dbmodel.HousePlantDBHelper
-
-/*
-    spn : spinner
- */
+import com.arelig.dalia.dbmodel.DBHousePlantController
 
 class AddHousePlantActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
-    private lateinit var hpDBHelper: HousePlantDBHelper
-    private var cantHousePlants = 0
     private var spnCategory: Spinner? = null
     private var textMsg: TextView? = null
     private var plantName: EditText? = null
     private var btnAddHousePlant: Button? = null
+    private val dbController = DBHousePlantController.getInstance(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,7 +21,6 @@ class AddHousePlantActivity : AppCompatActivity(), AdapterView.OnItemSelectedLis
     }
 
     private fun startComponents() {
-        hpDBHelper = HousePlantDBHelper(this)
         plantName = findViewById(R.id.editPlantName)
         spnCategory = findViewById(R.id.spnCategory)
         startSpinner()
@@ -65,20 +58,18 @@ class AddHousePlantActivity : AppCompatActivity(), AdapterView.OnItemSelectedLis
         val name = plantName?.text.toString()
         val category = spnCategory?.selectedItem.toString()
 
-        hpDBHelper.addHousePlant(Plant(cantHousePlants.toString(), name, category))
-
+        DBHousePlantController.addHousePlant(name, category)
         //clear fields
         plantName?.setText("")
         spnCategory?.setSelection(0)
-
-        cantHousePlants++
+        finish()
     }
 
     private fun removePlant(id: String) {
-        hpDBHelper.removeHousePlant(id)
+        dbController.removeHousePlant(id)
     }
 
-    private fun allPlants() = hpDBHelper.getAllHousePlants()
+    private fun allPlants() = dbController.getAllHousePlants()
 
 
     private fun checkName(): Boolean {

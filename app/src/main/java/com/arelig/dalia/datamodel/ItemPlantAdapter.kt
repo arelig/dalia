@@ -30,6 +30,8 @@ class ItemPlantAdapter(private val plantList: List<ItemPlant>) :
         holder.imageView.setImageResource(R.drawable.plant)
         holder.textViewName.text = currentItem.name
         holder.textViewCategory.text = currentItem.category
+
+
     }
 
     override fun getItemCount() = plantList.size

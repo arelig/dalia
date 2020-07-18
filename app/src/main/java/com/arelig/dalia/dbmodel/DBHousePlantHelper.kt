@@ -3,6 +3,7 @@ package com.arelig.dalia.dbmodel
 import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
+import android.database.DatabaseUtils
 import android.database.sqlite.SQLiteConstraintException
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteException
@@ -10,7 +11,7 @@ import android.database.sqlite.SQLiteOpenHelper
 import com.arelig.dalia.datamodel.Plant
 import java.util.*
 
-class HousePlantDBHelper(context: Context) :
+class DBHousePlantHelper(context: Context) :
     SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
     override fun onCreate(db: SQLiteDatabase) {
         db.execSQL(SQL_CREATE_ENTRIES)
@@ -37,6 +38,7 @@ class HousePlantDBHelper(context: Context) :
         values.put(DBContractHousePlant.HousePlantEntry.COLUMN_ID, plant.id)
         values.put(DBContractHousePlant.HousePlantEntry.COLUMN_NAME, plant.name)
         values.put(DBContractHousePlant.HousePlantEntry.COLUMN_CATEGORY, plant.category)
+
 
         // Insert the new row, returning the primary key value of the new row
         db.insert(DBContractHousePlant.HousePlantEntry.TABLE_NAME, null, values)
@@ -131,6 +133,15 @@ class HousePlantDBHelper(context: Context) :
             }
         }
         return housePlants
+    }
+
+    fun getItemCount(): Int {
+        val db = readableDatabase
+        return DatabaseUtils.longForQuery(
+            db,
+            "SELECT COUNT(*) FROM " + DBContractHousePlant.HousePlantEntry.TABLE_NAME,
+            null
+        ).toInt()
     }
 
     companion object {
