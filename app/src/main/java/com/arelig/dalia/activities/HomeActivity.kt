@@ -2,7 +2,6 @@ package com.arelig.dalia.activities
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.arelig.dalia.R
@@ -10,11 +9,12 @@ import com.arelig.dalia.datamodel.ItemPlant
 import com.arelig.dalia.datamodel.ItemPlantAdapter
 import com.arelig.dalia.datamodel.Plant
 import com.arelig.dalia.dbmodel.DBHousePlantController
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.activity_home.*
 
 class HomeActivity : AppCompatActivity() {
 
-    var btnAddPlant: Button? = null
+    private var fabAddPlant: FloatingActionButton? = null
     private lateinit var hpList: List<ItemPlant>
     private val dbController = DBHousePlantController.getInstance(this)
 
@@ -29,8 +29,9 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun startComponents() {
-        btnAddPlant = findViewById(R.id.btn_add_houseplant)
-        btnAddPlant?.setOnClickListener {
+        fabAddPlant = findViewById(R.id.fab_add_houseplant)
+        fabAddPlant?.setOnClickListener {
+
             val intent = Intent(this, AddHousePlantActivity::class.java)
             startActivity(intent)
         }

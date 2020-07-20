@@ -6,8 +6,8 @@
     android:orientation="vertical">
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:padding="25dp">
 
         <ImageView
@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/item_picture"
             android:text="Name"
-            android:textSize="25dp"
+            android:textSize="20dp"
             android:textStyle="bold" />
 
         <TextView
