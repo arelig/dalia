@@ -3,7 +3,6 @@ package com.arelig.dalia.dbmodel
 import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
-import android.database.DatabaseUtils
 import android.database.sqlite.SQLiteConstraintException
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteException
@@ -133,15 +132,6 @@ class DBHousePlantHelper(context: Context) :
             }
         }
         return housePlants
-    }
-
-    fun getItemCount(): Int {
-        val db = readableDatabase
-        return DatabaseUtils.longForQuery(
-            db,
-            "SELECT COUNT(*) FROM " + DBContractHousePlant.HousePlantEntry.TABLE_NAME,
-            null
-        ).toInt()
     }
 
     companion object {

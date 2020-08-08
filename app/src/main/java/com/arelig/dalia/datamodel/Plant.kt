@@ -5,5 +5,5 @@ package com.arelig.dalia.datamodel
     @todo: activity logic only
  */
 class Plant(val id: String, val name: String, val category: String) {
-    var wateringFreq: String = ""
+    var wateringFreq: String? = null
 }
