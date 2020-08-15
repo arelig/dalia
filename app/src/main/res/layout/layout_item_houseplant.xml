@@ -33,5 +33,6 @@
             android:layout_below="@id/item_name"
             android:text="Category"
             android:textSize="15dp" />
+
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

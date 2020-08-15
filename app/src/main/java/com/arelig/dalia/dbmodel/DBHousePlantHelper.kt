@@ -95,7 +95,7 @@ class DBHousePlantHelper(context: Context) :
         return housePlants
     }
 
-    fun getAllHousePlants(): ArrayList<Plant> {
+    fun getAllHousePlants(): List<Plant> {
         val housePlants = ArrayList<Plant>()
         val db = writableDatabase
         var cursor: Cursor?
