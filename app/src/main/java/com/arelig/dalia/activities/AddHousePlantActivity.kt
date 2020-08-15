@@ -5,7 +5,7 @@ import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.arelig.dalia.R
-import com.arelig.dalia.dbmodel.DBHousePlantController
+import com.arelig.dalia.sqldatabase.DBHousePlantController
 
 class AddHousePlantActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     private var spnCategory: Spinner? = null

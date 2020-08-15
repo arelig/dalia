@@ -4,12 +4,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
+    android:fitsSystemWindows="true"
     android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/titleHome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/source_sans_pro_semibold"
+        android:text="My plants"
+        android:textSize="26sp" />
+
+    <TextView
+        android:id="@+id/hello_msg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/titleHome"
+        android:textSize="18sp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_home_plant"
         android:layout_width="match_parent"
-        android:layout_height="215dp"
+        android:layout_height="220dp"
+        android:layout_below="@id/hello_msg"
         tools:listitem="@layout/layout_item_houseplant" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

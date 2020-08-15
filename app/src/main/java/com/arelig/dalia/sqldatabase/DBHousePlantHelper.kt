@@ -1,4 +1,4 @@
-package com.arelig.dalia.dbmodel
+package com.arelig.dalia.sqldatabase
 
 import android.content.ContentValues
 import android.content.Context
@@ -7,10 +7,11 @@ import android.database.sqlite.SQLiteConstraintException
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteException
 import android.database.sqlite.SQLiteOpenHelper
-import com.arelig.dalia.datamodel.Plant
+import com.arelig.dalia.data.Plant
 import java.util.*
 
-class PlantDBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
+class DBHousePlantHelper(context: Context) :
+    SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
     override fun onCreate(db: SQLiteDatabase) {
         db.execSQL(SQL_CREATE_ENTRIES)
     }
@@ -27,43 +28,44 @@ class PlantDBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,
     }
 
     @Throws(SQLiteConstraintException::class)
-    fun addPlant(plant: Plant): Boolean {
+    fun addHousePlant(plant: Plant): Boolean {
         // Gets the data repository in write mode
         val db = writableDatabase
 
         // Create a new map of values, where column names are the keys
         val values = ContentValues()
-        values.put(DBContractPlant.PlantEntry.COLUMN_ID, plant.id)
-        values.put(DBContractPlant.PlantEntry.COLUMN_NAME, plant.name)
-        values.put(DBContractPlant.PlantEntry.COLUMN_CATEGORY, plant.category)
+        values.put(DBContractHousePlant.HousePlantEntry.COLUMN_ID, plant.id)
+        values.put(DBContractHousePlant.HousePlantEntry.COLUMN_NAME, plant.name)
+        values.put(DBContractHousePlant.HousePlantEntry.COLUMN_CATEGORY, plant.category)
+
 
         // Insert the new row, returning the primary key value of the new row
-        db.insert(DBContractPlant.PlantEntry.TABLE_NAME, null, values)
+        db.insert(DBContractHousePlant.HousePlantEntry.TABLE_NAME, null, values)
 
         return true
     }
 
     @Throws(SQLiteConstraintException::class)
-    fun removePlant(id: String): Boolean {
+    fun removeHousePlant(id: String): Boolean {
         // Gets the data repository in write mode
         val db = writableDatabase
         // Define 'where' part of query.
-        val selection = DBContractPlant.PlantEntry.COLUMN_ID + " LIKE ?"
+        val selection = DBContractHousePlant.HousePlantEntry.COLUMN_ID + " LIKE ?"
         // Specify arguments in placeholder order.
         val selectionArgs = arrayOf(id)
         // Issue SQL statement.
-        db.delete(DBContractPlant.PlantEntry.TABLE_NAME, selection, selectionArgs)
+        db.delete(DBContractHousePlant.HousePlantEntry.TABLE_NAME, selection, selectionArgs)
 
         return true
     }
 
-    fun getPlant(id: String): ArrayList<Plant> {
-        val plants = ArrayList<Plant>()
+    fun getHousePlant(id: String): ArrayList<Plant> {
+        val housePlants = ArrayList<Plant>()
         val db = writableDatabase
         var cursor: Cursor?
         try {
             cursor = db.rawQuery(
-                "select * from " + DBContractPlant.PlantEntry.TABLE_NAME + " WHERE " + DBContractPlant.PlantEntry.COLUMN_ID + "='" + id + "'",
+                "select * from " + DBContractHousePlant.HousePlantEntry.TABLE_NAME + " WHERE " + DBContractHousePlant.HousePlantEntry.COLUMN_ID + "='" + id + "'",
                 null
             )
         } catch (e: SQLiteException) {
@@ -77,10 +79,10 @@ class PlantDBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,
         if (cursor!!.moveToFirst()) {
             while (!cursor.isAfterLast) {
                 name =
-                    cursor.getString(cursor.getColumnIndex(DBContractPlant.PlantEntry.COLUMN_NAME))
+                    cursor.getString(cursor.getColumnIndex(DBContractHousePlant.HousePlantEntry.COLUMN_NAME))
                 category =
-                    cursor.getString(cursor.getColumnIndex(DBContractPlant.PlantEntry.COLUMN_CATEGORY))
-                plants.add(
+                    cursor.getString(cursor.getColumnIndex(DBContractHousePlant.HousePlantEntry.COLUMN_CATEGORY))
+                housePlants.add(
                     Plant(
                         id,
                         name,
@@ -90,15 +92,18 @@ class PlantDBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,
                 cursor.moveToNext()
             }
         }
-        return plants
+        return housePlants
     }
 
-    fun getAllPlants(): ArrayList<Plant> {
-        val plants = ArrayList<Plant>()
+    fun getAllHousePlants(): List<Plant> {
+        val housePlants = ArrayList<Plant>()
         val db = writableDatabase
         var cursor: Cursor?
         try {
-            cursor = db.rawQuery("select * from " + DBContractPlant.PlantEntry.TABLE_NAME, null)
+            cursor = db.rawQuery(
+                "select * from " + DBContractHousePlant.HousePlantEntry.TABLE_NAME,
+                null
+            )
         } catch (e: SQLiteException) {
             db.execSQL(SQL_CREATE_ENTRIES)
             return ArrayList()
@@ -109,13 +114,14 @@ class PlantDBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,
         var category: String
         if (cursor!!.moveToFirst()) {
             while (!cursor.isAfterLast) {
-                id = cursor.getString(cursor.getColumnIndex(DBContractPlant.PlantEntry.COLUMN_ID))
+                id =
+                    cursor.getString(cursor.getColumnIndex(DBContractHousePlant.HousePlantEntry.COLUMN_ID))
                 name =
-                    cursor.getString(cursor.getColumnIndex(DBContractPlant.PlantEntry.COLUMN_NAME))
+                    cursor.getString(cursor.getColumnIndex(DBContractHousePlant.HousePlantEntry.COLUMN_NAME))
                 category =
-                    cursor.getString(cursor.getColumnIndex(DBContractPlant.PlantEntry.COLUMN_CATEGORY))
+                    cursor.getString(cursor.getColumnIndex(DBContractHousePlant.HousePlantEntry.COLUMN_CATEGORY))
 
-                plants.add(
+                housePlants.add(
                     Plant(
                         id,
                         name,
@@ -125,7 +131,7 @@ class PlantDBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,
                 cursor.moveToNext()
             }
         }
-        return plants
+        return housePlants
     }
 
     companion object {
@@ -134,12 +140,12 @@ class PlantDBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,
         val DATABASE_NAME = "FeedReader.db"
 
         private val SQL_CREATE_ENTRIES =
-            "CREATE TABLE " + DBContractPlant.PlantEntry.TABLE_NAME + " (" +
-                    DBContractPlant.PlantEntry.COLUMN_ID + " TEXT PRIMARY KEY," +
-                    DBContractPlant.PlantEntry.COLUMN_NAME + " TEXT," +
-                    DBContractPlant.PlantEntry.COLUMN_CATEGORY + "TEXT)"
+            "CREATE TABLE " + DBContractHousePlant.HousePlantEntry.TABLE_NAME + " (" +
+                    DBContractHousePlant.HousePlantEntry.COLUMN_ID + " TEXT PRIMARY KEY, " +
+                    DBContractHousePlant.HousePlantEntry.COLUMN_NAME + " TEXT, " +
+                    DBContractHousePlant.HousePlantEntry.COLUMN_CATEGORY + " TEXT) "
 
         private val SQL_DELETE_ENTRIES =
-            "DROP TABLE IF EXISTS " + DBContractPlant.PlantEntry.TABLE_NAME
+            "DROP TABLE IF EXISTS " + DBContractHousePlant.HousePlantEntry.TABLE_NAME
     }
 }

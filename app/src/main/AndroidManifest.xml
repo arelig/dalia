@@ -5,33 +5,25 @@
     <application
         android:allowBackup="true"
         android:configChanges="orientation"
+        android:icon="@drawable/plant"
         android:label="@string/app_name"
         android:screenOrientation="portrait"
         android:supportsRtl="true"
-        android:icon="@drawable/plant"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".activities.AddHousePlantActivity"
-            android:parentActivityName=".activities.HomeActivity"
-            android:windowSoftInputMode="adjustResize" />
-        <activity android:name=".activities.SplashScreenActivity">
+        <activity android:name=".activities.BaseActivity"></activity>
+        <activity android:name=".activities.SignInFirebaseActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.AboutActivity"
-            android:parentActivityName=".activities.StartActivity"></activity>
+            android:name=".activities.HomeActivity"
+            android:label="Home" />
         <activity
-            android:name=".activities.TermCondActivity"
-            android:parentActivityName=".activities.StartActivity" />
-        <activity android:name=".activities.HomeActivity" />
-        <activity
-            android:name=".activities.StartActivity"
-            android:parentActivityName=".activities.SplashScreenActivity"
-            android:windowSoftInputMode="adjustResize"></activity>
+            android:name=".activities.AddHousePlantActivity"
+            android:parentActivityName=".activities.HomeActivity"
+            android:windowSoftInputMode="adjustResize" />
 
         <meta-data
             android:name="preloaded_fonts"

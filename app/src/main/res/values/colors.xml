@@ -8,5 +8,7 @@
     <!--   a secondary color for controls like checkboxes and text fields -->
     <color name="colorAccent">#000000</color>
 
+    <color name="colorDarkMaterial">#121212</color>
+
 
 </resources>

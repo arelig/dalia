@@ -1,7 +1,7 @@
-package com.arelig.dalia.dbmodel
+package com.arelig.dalia.sqldatabase
 
 import android.content.Context
-import com.arelig.dalia.datamodel.Plant
+import com.arelig.dalia.data.Plant
 
 /*
     A db controller uses a db helper, which is used as an adapter to the db

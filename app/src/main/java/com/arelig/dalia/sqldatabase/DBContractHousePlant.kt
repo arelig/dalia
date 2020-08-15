@@ -1,4 +1,4 @@
-package com.arelig.dalia.dbmodel
+package com.arelig.dalia.sqldatabase
 
 import android.provider.BaseColumns
 
