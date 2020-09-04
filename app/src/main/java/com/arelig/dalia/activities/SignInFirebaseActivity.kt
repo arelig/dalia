@@ -29,7 +29,6 @@ class SignInFirebaseActivity : BaseActivity(), View.OnClickListener {
         supportActionBar?.hide()
 
         signInButton.setOnClickListener(this)
-        signInButton.setColorScheme(SignInButton.COLOR_DARK)
         signInButton.setSize(SignInButton.SIZE_STANDARD)
 
         // Configure sign-in to request the user's ID, email address, and basic

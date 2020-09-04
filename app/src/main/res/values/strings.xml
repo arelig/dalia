@@ -50,13 +50,14 @@
 
     <string name="google_status_fmt">Google User: %s</string>
     <string name="google_title_text">Google Sign In</string>
-    <string name="action_selected_one">One selected</string>
+    <string name="action_selected_one">Single</string>
     <string name="action_selected_many">Multiple</string>
 
 
     <string-array name="category_name">
         <item>Flowery</item>
         <item>Foliage</item>
-        <item>Succulent/Cacti</item>
+        <item>Succulent</item>
+        <item>Cacti</item>
     </string-array>
 </resources>

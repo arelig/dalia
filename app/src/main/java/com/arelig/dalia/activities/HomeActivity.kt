@@ -13,33 +13,47 @@ import androidx.recyclerview.widget.RecyclerView
 import com.arelig.dalia.R
 import com.arelig.dalia.data.Plant
 import com.arelig.dalia.data.PlantView
-import com.arelig.dalia.sqldatabase.DBHousePlantController
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.firebase.database.*
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.SelectableAdapter.Mode.IDLE
 import eu.davidea.flexibleadapter.SelectableAdapter.Mode.MULTI
-import kotlinx.android.synthetic.main.activity_home.*
 
 
 class HomeActivity : AppCompatActivity(), FlexibleAdapter.OnItemClickListener,
     FlexibleAdapter.OnItemLongClickListener, ActionMode.Callback {
-    private val dbController = DBHousePlantController.getInstance(this)
+    //views
+    private var recyclerViewPlants: RecyclerView? = null
     private var fabAddPlant: FloatingActionButton? = null
+
+    //tools
     private var mActionMode: ActionMode? = null
     private var mAdapter: FlexibleAdapter<PlantView>? = null
+
+    //data
+    private var local: MutableList<PlantView>? = null
+    private lateinit var database: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
-    }
-
-    override fun onStart() {
-        super.onStart()
-        startComponents()
+        database = FirebaseDatabase.getInstance().reference
+        startViews()
         startRecyclerView()
     }
 
-    private fun startComponents() {
+
+    private fun startRecyclerView() {
+        recyclerViewPlants?.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        recyclerViewPlants?.setHasFixedSize(true)
+        startData()
+        mAdapter = FlexibleAdapter(local)
+        recyclerViewPlants?.adapter = mAdapter
+    }
+
+    private fun startViews() {
+        recyclerViewPlants = findViewById(R.id.rv_home_plant)
         fabAddPlant = findViewById(R.id.fab_add_houseplant)
         fabAddPlant?.setOnClickListener {
             val intent = Intent(this, AddHousePlantActivity::class.java)
@@ -48,26 +62,35 @@ class HomeActivity : AppCompatActivity(), FlexibleAdapter.OnItemClickListener,
         }
     }
 
-    private fun startRecyclerView() {
-        rv_home_plant.layoutManager =
-            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        rv_home_plant.setHasFixedSize(true)
-        var hpList = getDatabaseList()
-        mAdapter = FlexibleAdapter(hpList)
-        rv_home_plant.adapter = mAdapter
-        mAdapter?.addListener(this)
+    private fun startData() {
+        database.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                updateDatabase(dataSnapshot)
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {}
+        })
+
     }
 
-
-    private fun getDatabaseList(): MutableList<PlantView> {
-        val list: MutableList<PlantView> = ArrayList()
-        val databasePlants = dbController.getAllHousePlants()
-        var pointer: Plant
-        for (element in databasePlants) {
-            pointer = element
-            list.add(PlantView(pointer))
+    private fun updateDatabase(dataSnapshot: DataSnapshot) {
+        //clearing the previous plant list
+        local = mutableListOf()
+        //iterating through all the nodes
+        if (dataSnapshot.exists()) {
+            for (postSnapshot in dataSnapshot.children) {
+                //getting plant
+                val plant = postSnapshot.getValue<Plant>(Plant::class.java)
+                val id = postSnapshot.key
+                val view = PlantView(id, plant)
+                //adding plant to the list
+                local?.add(view)
+            }
         }
-        return list.toMutableList()
+        //creating adapter
+        mAdapter = FlexibleAdapter(local)
+        recyclerViewPlants?.adapter = mAdapter
+        mAdapter?.addListener(this)
     }
 
     override fun onItemClick(view: View?, position: Int): Boolean {
@@ -143,8 +166,11 @@ class HomeActivity : AppCompatActivity(), FlexibleAdapter.OnItemClickListener,
                 // @todo: i have to put the remove from local and external database
                 Toast.makeText(this@HomeActivity, "Delete selected", Toast.LENGTH_SHORT)
                     .show()
-                val selectedPos = mAdapter?.selectedPositions
-                updateDatabase(selectedPos)
+                //cloud
+                for (item in mAdapter?.selectedPositions!!) {
+                    val toRemove = local?.get(item)?.id
+                    database.child(toRemove!!).removeValue()
+                }
                 mode.finish()
                 true
             }
@@ -152,17 +178,10 @@ class HomeActivity : AppCompatActivity(), FlexibleAdapter.OnItemClickListener,
         }
     }
 
-    private fun updateDatabase(selectedPos: List<Int>?) {
-        val local = getDatabaseList()
-        for (i in selectedPos?.indices!!) {
-            val pos = local[i]
-
-        }
-    }
-
     override fun onDestroyActionMode(mode: ActionMode?) {
         mAdapter?.mode = IDLE
         mActionMode = null
     }
-
 }
+
+

@@ -1,14 +1,13 @@
 package com.arelig.dalia.data
 
-import android.widget.ImageView
+import com.google.firebase.database.PropertyName
 
-/*
-    THIS IS THE DATA MODEL
-    @todo: activity logic only
- */
+data class Plant(
+    @PropertyName("name") var name: String,
+    @PropertyName("category") var category: String
+) {
 
-class Plant(val id: String, val name: String, val category: String) {
-    lateinit var photo: ImageView
+    constructor() : this("", "")
 
     override fun equals(obj: Any?): Boolean {
         return if (obj is Plant) {

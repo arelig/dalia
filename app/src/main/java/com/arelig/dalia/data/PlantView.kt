@@ -12,7 +12,8 @@ import eu.davidea.viewholders.FlexibleViewHolder
 import kotlinx.android.synthetic.main.layout_item_houseplant.view.*
 
 
-class PlantView(private var myPlant: Plant) : AbstractFlexibleItem<PlantView.PlantViewHolder>(),
+class PlantView(val id: String?, private var myPlant: Plant?) :
+    AbstractFlexibleItem<PlantView.PlantViewHolder>(),
     IFlexible<PlantView.PlantViewHolder> {
 
     override fun equals(other: Any?): Boolean {
@@ -31,7 +32,7 @@ class PlantView(private var myPlant: Plant) : AbstractFlexibleItem<PlantView.Pla
     }
 
     override fun hashCode(): Int {
-        return myPlant.id.hashCode()
+        return myPlant.hashCode()
     }
 
     override fun bindViewHolder(
@@ -41,8 +42,8 @@ class PlantView(private var myPlant: Plant) : AbstractFlexibleItem<PlantView.Pla
         payload: MutableList<Any>?
     ) {
         holder?.imageView?.setImageResource(R.drawable.plant)
-        holder?.textViewName?.text = myPlant.name
-        holder?.textViewCategory?.text = myPlant.category
+        holder?.textViewName?.text = myPlant?.name
+        holder?.textViewCategory?.text = myPlant?.category
     }
 
     class PlantViewHolder(view: View?, adapter: FlexibleAdapter<IFlexible<*>?>?) :
