@@ -16,6 +16,7 @@ class PlantView(val id: String?, private var myPlant: Plant?) :
     AbstractFlexibleItem<PlantView.PlantViewHolder>(),
     IFlexible<PlantView.PlantViewHolder> {
 
+
     override fun equals(other: Any?): Boolean {
         return myPlant == other
     }

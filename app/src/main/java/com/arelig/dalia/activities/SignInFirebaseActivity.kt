@@ -76,7 +76,6 @@ class SignInFirebaseActivity : BaseActivity(), View.OnClickListener {
 
     private fun updateUI(user: GoogleSignInAccount?) {
         if (user != null) {
-            Intent(this, HomeActivity::class.java)
             val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
             finish()

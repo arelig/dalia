@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/op_my_plants"
+        android:enabled="true"
+        android:icon="@drawable/ic_plant"
+        android:title="My plants" />
+    <item
+        android:id="@+id/op_add_plant"
+        android:enabled="true"
+        android:icon="@drawable/ic_add"
+        android:title="Add a plant" />
+    <item
+        android:id="@+id/op_today"
+        android:enabled="true"
+        android:icon="@drawable/ic_water"
+        android:title="Today" />
+</menu>

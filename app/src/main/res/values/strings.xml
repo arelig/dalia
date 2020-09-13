@@ -13,7 +13,7 @@
     <string name="add_plant_name_error">Required field</string>
     <string name="btn_add_houseplant">Add a plant</string>
     <string name="add_Plant_Name_Error">You must name your plant</string>
-    <string name="btn_add_to_home">Add to Home</string>
+    <string name="btn_add_plant">Add to Home</string>
     <string name="splash_intro">Being a plant parent doesn\'t have to be so hard</string>
 
     <string name="label_google_sign_in">Firebase + Google Sign In</string>
@@ -60,4 +60,6 @@
         <item>Succulent</item>
         <item>Cacti</item>
     </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
