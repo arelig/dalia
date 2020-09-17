@@ -42,16 +42,27 @@ class PlantView(val id: String?, private var myPlant: Plant?) :
         position: Int,
         payload: MutableList<Any>?
     ) {
-        holder?.imageView?.setImageResource(R.drawable.plant)
         holder?.textViewName?.text = myPlant?.name
         holder?.textViewCategory?.text = myPlant?.category
+
+        when (myPlant?.category.toString()) {
+            "Flowery" ->
+                holder?.imageView?.setImageResource(R.drawable.prof_flowery_1)
+            "Foliage" ->
+                holder?.imageView?.setImageResource(R.drawable.prof_foliage_1)
+            "Succulent" ->
+                holder?.imageView?.setImageResource(R.drawable.prof_succulent_1)
+            "Cacti" ->
+                holder?.imageView?.setImageResource(R.drawable.prof_cacti_1)
+        }
+
     }
 
     class PlantViewHolder(view: View?, adapter: FlexibleAdapter<IFlexible<*>?>?) :
         FlexibleViewHolder(view, adapter) {
-        val imageView: ImageView = itemView.item_picture
-        val textViewName: TextView = itemView.item_name
-        val textViewCategory: TextView = itemView.item_category
+        val imageView: ImageView = itemView.plant_picture_view
+        val textViewName: TextView = itemView.plant_name_view
+        val textViewCategory: TextView = itemView.plant_category_view
 
     }
 

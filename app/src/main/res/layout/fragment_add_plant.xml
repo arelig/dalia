@@ -4,33 +4,42 @@
     android:id="@+id/add_plant_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:windowSoftInputMode="adjustResize"
     tools:context=".fragments.AddPlantFragment">
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/edit_plant_name"
-        android:layout_width="200dp"
+        android:layout_width="225dp"
         android:layout_height="50dp"
-        android:layout_above="@id/spn_category"
-        android:layout_centerInParent="true"
-        android:layout_centerVertical="true"
-        android:gravity="center_horizontal"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="150dp"
+        android:ems="10"
         android:hint="Nombre" />
 
     <Spinner
         android:id="@+id/spn_category"
-        android:layout_width="200dp"
+        android:layout_width="225dp"
         android:layout_height="50dp"
-        android:layout_above="@id/btn_add_plant"
-        android:layout_centerInParent="true"
-        android:gravity="center_horizontal" />
+        android:layout_below="@id/edit_plant_name"
+        android:layout_centerHorizontal="true" />
+
+    <DatePicker
+        android:id="@+id/date_picker_last_watered"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/spn_category"
+        android:layout_centerHorizontal="true"
+        android:calendarViewShown="false"
+        android:datePickerMode="spinner"
+        android:hint="Last watered" />
 
     <Button
         android:id="@+id/btn_add_plant"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_centerVertical="true"
-        android:gravity="center_vertical"
+        android:layout_below="@id/date_picker_last_watered"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
         android:text="@string/btn_add_plant" />
 
 </RelativeLayout>

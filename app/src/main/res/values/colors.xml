@@ -4,16 +4,16 @@
     <color name="colorPrimary">#439E88</color>
     <!--   a darker variant of the primary color, used for
        the status bar (on Android 5.0+) and contextual app bars -->
-    <color name="colorPrimaryDark">#2f8069</color>
+    <color name="colorPrimaryDark">#026F5A</color>
     <!--   a complementary color for controls like checkboxes and text fields -->
-    <color name="colorAccent">#9e435a</color>
-    <color name="textColorPrimary">#ffffff</color>
-    <color name="windowBackground">#e1f1ed</color>
-    <color name="colorDarkMaterial">#121212</color>
+    <color name="colorAccent">#cd3f15</color>
+    <color name="colorTextPrimary">#727272</color>
+
+
+    <color name="windowBackground">#f5faf9</color>
 
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
-    <color name="colorDivider">#BDBDBD</color>
 
 
 </resources>

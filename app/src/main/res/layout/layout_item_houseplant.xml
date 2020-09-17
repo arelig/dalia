@@ -1,45 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="180dp"
-    android:layout_height="180dp"
-    android:layout_marginStart="15dp"
-    android:layout_marginTop="15dp"
-    android:orientation="vertical"
-    app:cardBackgroundColor="#FFFFFF"
-    app:cardCornerRadius="15dp">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:padding="10dp">
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/plant_card_view"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:layout_margin="10dp"
+        android:padding="15dp"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="5dp"
+        app:cardMaxElevation="10dp">
 
-        <ImageView
-            android:id="@+id/item_picture"
-            android:layout_width="150dp"
-            android:layout_height="100dp"
-            android:layout_marginBottom="12dp" />
-
-        <TextView
-            android:id="@+id/item_name"
+        <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/item_picture"
-            android:layout_marginLeft="10dp"
-            android:fontFamily="@font/source_sans_pro"
-            android:text="Name"
-            android:textSize="18dp"
-            android:textStyle="bold" />
+            android:layout_gravity="center_horizontal"
+            android:padding="10dp">
 
-        <TextView
-            android:id="@+id/item_category"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/item_name"
-            android:layout_marginLeft="10dp"
-            android:fontFamily="@font/source_sans_pro"
-            android:text="Category"
-            android:textSize="14dp" />
-    </RelativeLayout>
-</androidx.cardview.widget.CardView>
+            <ImageView
+                android:id="@+id/plant_picture_view"
+                android:layout_width="150dp"
+                android:layout_height="100dp"
+                android:padding="30dp" />
+
+            <TextView
+                android:id="@+id/plant_name_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/plant_picture_view"
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="Name"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/plant_category_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/plant_name_view"
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/roboto"
+                android:text="Category"
+                android:textSize="16sp" />
+        </RelativeLayout>
+    </com.google.android.material.card.MaterialCardView>
+</LinearLayout>

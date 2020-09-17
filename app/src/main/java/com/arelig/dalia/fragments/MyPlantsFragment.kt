@@ -6,9 +6,9 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.view.ActionMode
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.arelig.dalia.R
+import com.arelig.dalia.config.AutoFitGridLayoutManager
 import com.arelig.dalia.data.Plant
 import com.arelig.dalia.data.PlantView
 import com.google.firebase.database.*
@@ -50,7 +50,7 @@ class MyPlantsFragment : Fragment(), FlexibleAdapter.OnItemClickListener,
     }
 
     private fun startData() {
-        database = FirebaseDatabase.getInstance().reference
+        database = FirebaseDatabase.getInstance().reference.child("plants")
         database.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 updateDatabase(dataSnapshot)
@@ -62,9 +62,8 @@ class MyPlantsFragment : Fragment(), FlexibleAdapter.OnItemClickListener,
 
     private fun startRecyclerView() {
         recyclerViewPlants = view?.findViewById(R.id.rv_my_plants)
-        recyclerViewPlants?.layoutManager =
-            LinearLayoutManager(context!!, LinearLayoutManager.HORIZONTAL, false)
-        recyclerViewPlants?.setHasFixedSize(true)
+        recyclerViewPlants?.layoutManager = AutoFitGridLayoutManager(requireContext(), 500)
+
         startData()
         mAdapter = FlexibleAdapter(local)
         recyclerViewPlants?.adapter = mAdapter
@@ -106,11 +105,6 @@ class MyPlantsFragment : Fragment(), FlexibleAdapter.OnItemClickListener,
         toggleSelection(position)
     }
 
-    /**
-     * Toggle the selection state of an item.
-     * If the item was the last one in the selection and is unselected, the ActionMode
-     * is stopped.
-     */
     private fun toggleSelection(position: Int) {
         // Mark the position selected
         mAdapter?.toggleSelection(position)
@@ -154,18 +148,17 @@ class MyPlantsFragment : Fragment(), FlexibleAdapter.OnItemClickListener,
     ): Boolean {
         return when (item.itemId) {
             R.id.share -> {
-                Toast.makeText(context!!, "Share selected", Toast.LENGTH_SHORT)
+                Toast.makeText(requireContext(), "Oops... not implemented yet", Toast.LENGTH_SHORT)
                     .show()
                 mode.finish()
                 true
             }
             R.id.delete -> {
-                // @todo: i have to put the remove from local and external database
-                Toast.makeText(context!!, "Delete selected", Toast.LENGTH_SHORT)
+                Toast.makeText(requireContext(), "Alright, plant-killer", Toast.LENGTH_SHORT)
                     .show()
                 //cloud
-                for (item in mAdapter?.selectedPositions!!) {
-                    val toRemove = local?.get(item)?.id
+                for (i in mAdapter?.selectedPositions!!) {
+                    val toRemove = local?.get(i)?.id
                     database.child(toRemove!!).removeValue()
                 }
                 mode.finish()

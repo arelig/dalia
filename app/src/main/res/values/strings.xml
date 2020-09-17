@@ -1,18 +1,8 @@
 <resources>
     <string name="app_name">Dalia</string>
-    <string name="pref_data_file">prefData</string>
-    <string name="key_state">state</string>
-    <string name="key_user">user</string>
-    <string name="hint_email">Enter your E-mail</string>
-    <string name="title_dalia">DALIA</string>
-    <string name="hint_password">Create a password</string>
-    <string name="term_and_cond">Terms and Cond</string>
-    <string name="dev">Development</string>
-    <string name="btn_sign_up">Sign up</string>
     <string name="hint_name">What\'s your name?</string>
-    <string name="add_plant_name_error">Required field</string>
-    <string name="btn_add_houseplant">Add a plant</string>
-    <string name="add_Plant_Name_Error">You must name your plant</string>
+    <string name="error_plant_name">Required field</string>
+    <string name="btn_add_houseplant">Add a Plant</string>
     <string name="btn_add_plant">Add to Home</string>
     <string name="splash_intro">Being a plant parent doesn\'t have to be so hard</string>
 
@@ -50,8 +40,8 @@
 
     <string name="google_status_fmt">Google User: %s</string>
     <string name="google_title_text">Google Sign In</string>
-    <string name="action_selected_one">Single</string>
-    <string name="action_selected_many">Multiple</string>
+    <string name="action_selected_one" />
+    <string name="action_selected_many" />
 
 
     <string-array name="category_name">
@@ -60,6 +50,5 @@
         <item>Succulent</item>
         <item>Cacti</item>
     </string-array>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>

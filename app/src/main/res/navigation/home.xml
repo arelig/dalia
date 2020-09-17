@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home"
+    app:startDestination="@id/op_my_plants"
+    tools:ignore="UnusedNavigation">
+
+    <fragment
+        android:id="@+id/op_my_plants"
+        android:name="com.arelig.dalia.fragments.MyPlantsFragment"
+        android:label="My plants"
+        tools:layout="@layout/fragment_my_plants" />
+    <fragment
+        android:id="@+id/op_today"
+        android:name="com.arelig.dalia.fragments.TodayFragment"
+        android:label="Today"
+        tools:layout="@layout/fragment_today" />
+    <fragment
+        android:id="@+id/op_add_plant"
+        android:name="com.arelig.dalia.fragments.AddPlantFragment"
+        android:label="Add plant"
+        tools:layout="@layout/fragment_add_plant" />
+
+</navigation>

@@ -4,14 +4,13 @@ import com.google.firebase.database.PropertyName
 
 data class Plant(
     @PropertyName("name") var name: String,
-    @PropertyName("category") var category: String
+    @PropertyName("category") var category: String,
+    @PropertyName("last-watered") var lastWatered: String
 ) {
 
-    constructor() : this("", "")
+    constructor() : this("", "", "")
 
-    override fun equals(obj: Any?): Boolean {
-        return if (obj is Plant) {
-            equals(obj as Plant?)
-        } else false
+    override fun equals(other: Any?): Boolean {
+        return this == other
     }
 }

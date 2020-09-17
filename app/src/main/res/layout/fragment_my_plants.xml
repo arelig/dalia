@@ -5,22 +5,10 @@
     android:layout_height="match_parent"
     tools:context=".fragments.MyPlantsFragment">
 
-    <TextView
-        android:id="@+id/title_my_plants"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
-        android:fontFamily="@font/source_sans_pro_semibold"
-        android:text="My plants"
-        android:textSize="26sp" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_my_plants"
         android:layout_width="match_parent"
-        android:layout_height="220dp"
-        android:layout_below="@id/title_my_plants"
+        android:layout_height="wrap_content"
         tools:listitem="@layout/layout_item_houseplant" />
-
 
 </RelativeLayout>
